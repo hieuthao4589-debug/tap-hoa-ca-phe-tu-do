@@ -63,7 +63,6 @@
   </head>
   <body>
     <div class="container bill-container">
-      <!-- KHU VỰC HÓA ĐƠN ĐỂ TẢI VỀ -->
       <div id="bill-receipt">
         <div class="text-center mb-4">
           <div
@@ -78,7 +77,6 @@
           </p>
         </div>
 
-        <!-- 1. Tóm tắt đơn -->
         <div class="card-custom">
           <div
             class="card-header-custom d-flex justify-content-between align-items-center"
@@ -112,7 +110,6 @@
           </div>
         </div>
 
-        <!-- 2. Chi tiết giao hàng -->
         <div class="card-custom">
           <div class="card-header-custom">Chi tiết giao hàng</div>
           <div class="card-body-custom">
@@ -132,7 +129,6 @@
           </div>
         </div>
 
-        <!-- 3. Món đã đặt (Đã sửa lỗi hiển thị bằng order_details) -->
         <div class="card-custom">
           <div class="card-header-custom text-primary">Món đã đặt</div>
           <div class="card-body-custom">
@@ -141,7 +137,9 @@
               <div>
                 <p class="fw-bold mb-0">{{ item.product_name }}</p>
                 <small class="text-muted-custom"
-                  >Size: {{ item.size }} | Đá: {{ item.ice }} | Ngọt: {{ item.sweetness }}</small>
+                  >Size: {{ item.size }} | Đá: {{ item.ice }} | Ngọt: {{
+                  item.sweetness }}</small
+                >
               </div>
               <div class="text-end">
                 <p class="fw-bold mb-0">{{ item.price }}đ</p>
@@ -151,7 +149,7 @@
             {% if not forloop.last %}
             <div class="item-divider"></div>
             {% endif %} {% empty %}
-            <!-- Giao diện trống an toàn nếu chưa có món -->
+
             <div class="text-center text-muted">
               <p class="mb-0">Chưa có thông tin món ăn.</p>
             </div>
@@ -159,7 +157,6 @@
           </div>
         </div>
 
-        <!-- 4. Chi tiết thanh toán -->
         <div class="card-custom mb-2">
           <div class="card-header-custom">Chi tiết thanh toán</div>
           <div class="card-body-custom">
@@ -182,7 +179,6 @@
         </div>
       </div>
 
-      <!-- NÚT BẤM -->
       <div class="d-flex justify-content-center gap-3 mt-4">
         <a
           href="/#menu"

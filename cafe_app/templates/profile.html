@@ -25,7 +25,6 @@
         padding-bottom: 30px;
       }
 
-      /* Header & Avatar */
       .header-top {
         background: #fff;
         padding: 15px;
@@ -47,7 +46,6 @@
         border-bottom-right-radius: 16px;
       }
 
-      /* ĐỔI MÀU NỀN AVATAR THÀNH CAM ĐẤT */
       .avatar-circle {
         width: 80px;
         height: 80px;
@@ -78,7 +76,6 @@
         border: 1px solid #f0f0f0;
       }
 
-      /* Form nhập liệu bo tròn */
       .form-section {
         background: #fff;
         padding: 20px 15px;
@@ -109,12 +106,10 @@
         transition: border 0.2s;
       }
 
-      /* ĐỔI MÀU VIỀN KHI NHẤP CHUỘT VÀO Ô NHẬP LIỆU */
       .form-control-custom:focus {
         border-color: #c46a4a;
       }
 
-      /* ĐỔI MÀU NÚT CẬP NHẬT */
       .btn-update {
         background-color: #c46a4a;
         color: white;
@@ -131,7 +126,7 @@
       .btn-update:hover {
         background-color: #3b2b24;
         color: white;
-      } /* Màu nâu cà phê khi trỏ chuột vào */
+      }
 
       .btn-logout {
         background-color: #fff;
@@ -163,7 +158,6 @@
       <form method="POST" action="/profile/">
         {% csrf_token %}
 
-        <!-- Khu vực Avatar -->
         <div class="avatar-section">
           <div class="avatar-circle">
             <i class="fa-solid fa-user"></i>
@@ -177,7 +171,6 @@
           </p>
         </div>
 
-        <!-- Thông tin cơ bản -->
         <div class="form-section">
           <div class="section-title">Thông tin cơ bản</div>
 
@@ -228,7 +221,6 @@
           />
         </div>
 
-        <!-- Thông tin giao hàng & Liên hệ -->
         <div class="form-section">
           <div class="section-title">Thông tin liên hệ & Giao hàng</div>
 

@@ -110,7 +110,6 @@ def checkout(request):
     if not cart:
         return redirect("home")
 
-    # Bắt phương thức thanh toán từ form gửi sang
     payment_method = request.POST.get("paymentMethod", "cash")
     request.session["last_payment"] = payment_method
 
@@ -136,7 +135,6 @@ def checkout(request):
     request.session["cart"] = {}
     order_details = OrderDetail.objects.filter(order=order)
 
-    # Gửi cả hóa đơn lẫn danh sách món sang giao diện
     return render(
         request, "success.html", {"order": order, "order_details": order_details}
     )
@@ -155,24 +153,22 @@ def update_cart(request, cart_key, action):
     return redirect("/cart/")
 
 
-from .models import UserProfile  # Nhớ kiểm tra xem đã có dòng này ở đầu file chưa nha
+from .models import UserProfile
 
 
 def profile_view(request):
-    # Bắt buộc phải đăng nhập mới được xem trang này
+
     if not request.user.is_authenticated:
         return redirect("login_view")
 
-    # Tìm profile của khách, nếu chưa có thì hệ thống tự tạo mới luôn
     profile, created = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
-        # 1. Lưu thông tin cơ bản
+
         request.user.first_name = request.POST.get("full_name", "")
         request.user.email = request.POST.get("email", "")
         request.user.save()
 
-        # 2. Lưu thông tin ship hàng
         profile.phone = request.POST.get("phone", "")
         profile.address = request.POST.get("address", "")
         profile.gender = request.POST.get("gender", "")
@@ -182,10 +178,14 @@ def profile_view(request):
             profile.dob = dob
 
         profile.save()
-        return redirect("profile_view")  # Lưu xong thì tải lại trang cho mới
+        return redirect("profile_view")
 
     return render(request, "profile.html", {"profile": profile})
 
 
 def about_view(request):
     return render(request, "about.html")
+
+
+def contact_view(request):
+    return render(request, "contact.html")

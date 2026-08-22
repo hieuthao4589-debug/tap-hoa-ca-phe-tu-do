@@ -33,7 +33,6 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     total_price = models.IntegerField(default=0)
 
-    # ĐÂY CHÍNH LÀ DÒNG BỊ THIẾU NÈ:
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Pending")
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -55,7 +54,6 @@ class OrderDetail(models.Model):
         return f"{self.quantity}x {self.product_name}"
 
 
-# Bảng lưu các Size và Giá riêng cho từng sản phẩm
 class ProductSize(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="sizes")
     name = models.CharField(
