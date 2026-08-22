@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cập nhật tài khoản - Cà Phê Tự Do</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #f5f5f5;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .app-container {
+        max-width: 480px;
+        margin: 0 auto;
+        min-height: 100vh;
+        background-color: #f5f5f5;
+        padding-bottom: 30px;
+      }
+
+      /* Header & Avatar */
+      .header-top {
+        background: #fff;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 18px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+      .avatar-section {
+        background: #fff;
+        text-align: center;
+        padding: 25px 15px;
+        margin-bottom: 10px;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+      }
+
+      /* ĐỔI MÀU NỀN AVATAR THÀNH CAM ĐẤT */
+      .avatar-circle {
+        width: 80px;
+        height: 80px;
+        background-color: #c46a4a;
+        color: white;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .edit-badge {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: white;
+        color: #c46a4a;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid #f0f0f0;
+      }
+
+      /* Form nhập liệu bo tròn */
+      .form-section {
+        background: #fff;
+        padding: 20px 15px;
+        border-radius: 16px;
+        margin-bottom: 10px;
+      }
+      .section-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 15px;
+        color: #333;
+      }
+      .form-label {
+        font-weight: 600;
+        color: #444;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+      .form-control-custom {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        font-size: 15px;
+        color: #333;
+        outline: none;
+        transition: border 0.2s;
+      }
+
+      /* ĐỔI MÀU VIỀN KHI NHẤP CHUỘT VÀO Ô NHẬP LIỆU */
+      .form-control-custom:focus {
+        border-color: #c46a4a;
+      }
+
+      /* ĐỔI MÀU NÚT CẬP NHẬT */
+      .btn-update {
+        background-color: #c46a4a;
+        color: white;
+        border: none;
+        padding: 14px;
+        width: 100%;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(196, 106, 74, 0.2);
+        transition: 0.3s;
+      }
+      .btn-update:hover {
+        background-color: #3b2b24;
+        color: white;
+      } /* Màu nâu cà phê khi trỏ chuột vào */
+
+      .btn-logout {
+        background-color: #fff;
+        color: #dc3545;
+        border: 1px solid #dc3545;
+        padding: 14px;
+        width: 100%;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 10px;
+        transition: 0.3s;
+      }
+      .btn-logout:hover {
+        background-color: #dc3545;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="header-top">
+        <a href="/#menu" class="text-dark me-3"
+          ><i class="fa-solid fa-arrow-left"></i
+        ></a>
+        <span class="flex-grow-1 text-center pe-4">Cập nhật tài khoản</span>
+      </div>
+
+      <form method="POST" action="/profile/">
+        {% csrf_token %}
+
+        <!-- Khu vực Avatar -->
+        <div class="avatar-section">
+          <div class="avatar-circle">
+            <i class="fa-solid fa-user"></i>
+            <div class="edit-badge"><i class="fa-solid fa-pen"></i></div>
+          </div>
+          <h4 class="fw-bold mb-1">
+            {{ user.first_name|default:user.username }}
+          </h4>
+          <p class="text-muted mb-0">
+            {{ profile.phone|default:"Chưa có số điện thoại" }}
+          </p>
+        </div>
+
+        <!-- Thông tin cơ bản -->
+        <div class="form-section">
+          <div class="section-title">Thông tin cơ bản</div>
+
+          <label class="form-label">Họ Tên</label>
+          <input
+            type="text"
+            name="full_name"
+            class="form-control-custom"
+            value="{{ user.first_name }}"
+            placeholder="Nhập họ và tên"
+          />
+
+          <label class="form-label">Giới tính</label>
+          <select name="gender" class="form-control-custom">
+            <option value="">Chọn giới tính</option>
+            <option
+              value="Nam"
+              {%
+              if
+              profile.gender=""
+              ="Nam"
+              %}selected{%
+              endif
+              %}
+            >
+              Nam
+            </option>
+            <option
+              value="Nữ"
+              {%
+              if
+              profile.gender=""
+              ="Nữ"
+              %}selected{%
+              endif
+              %}
+            >
+              Nữ
+            </option>
+          </select>
+
+          <label class="form-label">Ngày sinh</label>
+          <input
+            type="date"
+            name="dob"
+            class="form-control-custom"
+            value="{{ profile.dob|date:'Y-m-d' }}"
+          />
+        </div>
+
+        <!-- Thông tin giao hàng & Liên hệ -->
+        <div class="form-section">
+          <div class="section-title">Thông tin liên hệ & Giao hàng</div>
+
+          <label class="form-label">Số điện thoại</label>
+          <input
+            type="text"
+            name="phone"
+            class="form-control-custom"
+            value="{{ profile.phone|default_if_none:'' }}"
+            placeholder="+84..."
+          />
+
+          <label class="form-label">Địa chỉ nhận hàng (Quan trọng)</label>
+          <input
+            type="text"
+            name="address"
+            class="form-control-custom"
+            value="{{ profile.address|default_if_none:'' }}"
+            placeholder="Nhập số nhà, tên đường, quận/huyện..."
+          />
+
+          <label class="form-label">Email (Không bắt buộc)</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control-custom"
+            value="{{ user.email }}"
+            placeholder="example@gmail.com"
+          />
+          <small class="text-muted d-block mt-n2 mb-3" style="font-size: 13px"
+            >Bạn sẽ nhận được hóa đơn điện tử qua địa chỉ email này.</small
+          >
+
+          <button type="submit" class="btn-update">Cập nhật</button>
+
+          <a
+            href="/logout/"
+            class="btn btn-logout d-block text-center mt-3 text-decoration-none"
+            >Đăng xuất</a
+          >
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

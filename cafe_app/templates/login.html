@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng nhập - Tự Do.</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      form p {
+        margin-bottom: 1rem;
+        text-align: left;
+      }
+      label {
+        font-weight: 600;
+        color: #3b2b24;
+        margin-bottom: 5px;
+        display: block;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        outline: none;
+        transition: 0.3s;
+      }
+      input:focus {
+        border-color: #c46a4a;
+        box-shadow: 0 0 0 0.2rem rgba(196, 106, 74, 0.25);
+      }
+    </style>
+  </head>
+  <body
+    style="background-color: #fbf3e8"
+    class="d-flex align-items-center justify-content-center vh-100"
+  >
+    <div class="card shadow border-0 p-4 text-center" style="width: 400px">
+      <h2 class="fw-bold mb-4" style="color: #3b2b24">Đăng Nhập</h2>
+
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button
+          type="submit"
+          class="btn w-100 fw-bold mt-3"
+          style="background-color: #3b2b24; color: white"
+        >
+          VÀO QUÁN
+        </button>
+      </form>
+
+      <p class="mt-4 mb-0">
+        Chưa có tài khoản?
+        <a
+          href="/register/"
+          style="color: #c46a4a; font-weight: bold; text-decoration: none"
+          >Đăng ký ngay</a
+        >
+      </p>
+      <a
+        href="/"
+        class="mt-3 text-muted"
+        style="font-size: 14px; text-decoration: none"
+        >← Quay lại trang chủ</a
+      >
+    </div>
+  </body>
+</html>
