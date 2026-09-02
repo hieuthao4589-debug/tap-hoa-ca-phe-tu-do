@@ -87,6 +87,77 @@
             </li>
           </ul>
           <div class="d-flex align-items-center">
+            <!-- Nút chuông thông báo -->
+            <div class="dropdown me-2 d-inline-block">
+              <button
+                class="btn dropdown-toggle position-relative"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="border: none; background: transparent"
+              >
+                <i
+                  class="fa-solid fa-bell fs-4"
+                  style="color: var(--vintage-orange)"
+                ></i>
+                <!-- Chấm đỏ xinh xắn báo hiệu có thông báo mới -->
+                <span
+                  class="position-absolute top-0 start-75 translate-middle p-1 bg-danger border border-light rounded-circle"
+                >
+                  <span class="visually-hidden">Thông báo mới</span>
+                </span>
+              </button>
+
+              <!-- Hộp thoại xổ xuống chứa các sự kiện -->
+              <ul
+                class="dropdown-menu dropdown-menu-end shadow"
+                style="width: 320px; border-radius: 12px; border: none"
+              >
+                <li>
+                  <h6
+                    class="dropdown-header fw-bold fs-6"
+                    style="color: var(--vintage-brown)"
+                  >
+                    Chương trình & Sự kiện
+                  </h6>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+
+                <!-- Sự kiện 1 (Lấy từ ý tưởng ảnh của Thảo) -->
+                <li>
+                  <a class="dropdown-item py-2" href="#">
+                    <p
+                      class="mb-1 fw-bold text-wrap"
+                      style="color: var(--vintage-orange)"
+                    >
+                      🎉 Khai trương Tạp Hóa Cà Phê Tự Do
+                    </p>
+                    <small class="text-muted d-block text-wrap"
+                      >Đồng giá 10k Size M (Từ ngày 5/5 - 6/5). Mời bạn ghé
+                      chơi!</small
+                    >
+                  </a>
+                </li>
+
+                <li><hr class="dropdown-divider" /></li>
+
+                <!-- Sự kiện 2 -->
+                <li>
+                  <a class="dropdown-item py-2" href="#">
+                    <p
+                      class="mb-1 fw-bold text-wrap"
+                      style="color: var(--vintage-orange)"
+                    >
+                      💳 Chương trình tích điểm
+                    </p>
+                    <small class="text-muted d-block text-wrap"
+                      >Tổng hợp chương trình tích điểm. Tích thẻ nhận ngay ưu
+                      đãi đồ uống.</small
+                    >
+                  </a>
+                </li>
+              </ul>
+            </div>
             <a href="/cart/" class="btn btn-outline-dark me-3 fw-bold">
               <i class="fa-solid fa-basket-shopping me-1"></i>
               ({{ request.session.cart|length|default:0 }})
